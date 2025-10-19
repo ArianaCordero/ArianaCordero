@@ -1,0 +1,175 @@
+<svg viewBox="0 0 1200 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Ariana Cordero — Ingeniería en Sistemas (3er año · UPB)</title>
+  <desc id="desc">Banner animado con lavanda y dorado: typewriter, partículas, progreso, scanner en chips y órbitas.</desc>
+
+  <!-- ===== PALETA ===== -->
+  <style>
+    :root{
+      --bg:#F9F6FF;
+      --ink:#2E2A2A;
+      --sub:#5C5558;
+      --primary:#A07BE9;   /* lavanda pro */
+      --accent:#E5C07B;    /* champagne suave */
+      --light:#E9E4F0;     /* lavanda pálida */
+      --surface:#FFFFFF;
+      --stroke:#E3DFE9;
+      --hint:#D7BCE8;
+      --glow:rgba(160,123,233,.28);
+    }
+    @media(prefers-color-scheme:dark){
+      :root{
+        --bg:#1C1B29;
+        --ink:#FAF9FF;
+        --sub:#CFC6E6;
+        --primary:#CDB4FF;
+        --accent:#FFD580;
+        --light:#2B293D;
+        --surface:#221F30;
+        --stroke:#3C3658;
+        --hint:#A484E2;
+        --glow:rgba(205,180,255,.25);
+      }
+    }
+
+    .px{font-family:"Press Start 2P",monospace}
+    .title{fill:var(--ink);font-size:28px;letter-spacing:.5px}
+    .sub{fill:var(--sub);font-size:12px}
+    .frame{fill:none;stroke:var(--stroke);stroke-width:3}
+    .bar{fill:var(--primary)}
+    .chip{fill:none;stroke:var(--hint);stroke-width:2;rx:8}
+    .chip-fill{fill:var(--surface);stroke:var(--hint);stroke-width:2;rx:8}
+
+    @keyframes blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+    @keyframes pulse{0%,100%{opacity:.6}50%{opacity:1}}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+    @keyframes driftX{0%{transform:translateX(0)}50%{transform:translateX(12px)}100%{transform:translateX(0)}}
+    @keyframes wobble{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
+  </style>
+
+  <!-- ===== DEFS ===== -->
+  <defs>
+    <!-- glow radial -->
+    <radialGradient id="bgGlow" cx="60%" cy="40%" r="65%">
+      <stop offset="0%" stop-color="var(--glow)">
+        <animate attributeName="stop-opacity" values=".35;.15;.35" dur="8s" repeatCount="indefinite"/>
+      </stop>
+      <stop offset="100%" stop-color="transparent"/>
+    </radialGradient>
+
+    <!-- typewriter masks -->
+    <mask id="twTitle">
+      <rect x="0" y="0" width="0" height="360" fill="#fff">
+        <animate attributeName="width" from="0" to="620" dur="1.6s" begin=".2s" fill="freeze"/>
+      </rect>
+    </mask>
+    <mask id="twSub">
+      <rect x="0" y="0" width="0" height="360" fill="#fff">
+        <animate attributeName="width" from="0" to="940" dur="1.9s" begin=".7s" fill="freeze"/>
+      </rect>
+    </mask>
+
+    <!-- rayas progreso -->
+    <pattern id="stripe" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12 L12 0" stroke="var(--hint)" stroke-width="6"/>
+      <animate attributeName="patternTransform" type="translate" from="0,0" to="12,0" dur="1s" repeatCount="indefinite"/>
+    </pattern>
+
+    <!-- glow suave -->
+    <filter id="softGlow">
+      <feGaussianBlur stdDeviation="1.6" in="SourceGraphic" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- ===== FONDO ===== -->
+  <rect width="100%" height="100%" fill="var(--bg)"/>
+  <rect width="100%" height="100%" fill="url(#bgGlow)"/>
+  <!-- partículas -->
+  <g opacity=".25">
+    <circle cx="140" cy="90"  r="3" fill="var(--hint)" style="animation:float 6s ease-in-out infinite"/>
+    <circle cx="260" cy="62"  r="2" fill="var(--hint)" style="animation:float 7s ease-in-out infinite .6s"/>
+    <circle cx="980" cy="82"  r="3" fill="var(--hint)" style="animation:float 8s ease-in-out infinite .2s"/>
+    <circle cx="1080" cy="122" r="2.5" fill="var(--hint)" style="animation:float 6.5s ease-in-out infinite .8s"/>
+    <circle cx="900" cy="300" r="2" fill="var(--hint)" style="animation:float 7.5s ease-in-out infinite .3s"/>
+    <circle cx="320" cy="300" r="2.5" fill="var(--hint)" style="animation:float 7.8s ease-in-out infinite .9s"/>
+  </g>
+
+  <!-- ===== VENTANA ===== -->
+  <rect x="40" y="40" width="1120" height="280" class="frame" rx="12"/>
+  <rect x="40" y="40" width="1120" height="36" class="bar" rx="12 12 0 0"/>
+  <g>
+    <circle cx="70" cy="58" r="6" fill="#E57373" style="animation:pulse 2.2s infinite"/>
+    <circle cx="95" cy="58" r="6" fill="#FFD166" style="animation:pulse 2.2s infinite .25s"/>
+    <circle cx="120" cy="58" r="6" fill="var(--primary)" style="animation:pulse 2.2s infinite .5s"/>
+  </g>
+  <text x="150" y="64" class="px" fill="#fff" style="font-size:10px">terminal — ariana_cordero — 96×28</text>
+
+  <!-- ===== TITULAR + SUBTÍTULO ===== -->
+  <g mask="url(#twTitle)">
+    <text x="64" y="120" class="px title" filter="url(#softGlow)">Hi, I'm Ariana Cordero</text>
+  </g>
+  <rect x="700" y="104" width="10" height="18" fill="var(--accent)" style="animation:blink 1s steps(1,end) infinite"/>
+  <g mask="url(#twSub)">
+    <text x="64" y="150" class="px sub">Undergraduate Student in Computer Systems Engineering at UPB</text>
+  </g>
+
+  <!-- ===== PROGRESO (debajo del subtítulo) ===== -->
+  <g>
+    <rect x="64" y="166" width="460" height="10" rx="5" class="chip"/>
+    <rect x="64" y="166" width="0"   height="10" rx="5" fill="url(#stripe)">
+      <animate attributeName="width" values="0;150;300;420;460;0" dur="6.5s" repeatCount="indefinite"/>
+    </rect>
+    <!-- % cross-fade -->
+    <g class="px sub" fill="var(--sub)" style="font-size:11px">
+      <text x="532" y="175" opacity="1">0%</text>
+      <text x="532" y="175" opacity="0">35%<animate attributeName="opacity" values="0;1;0;0;0" dur="6.5s" repeatCount="indefinite" begin="1.4s"/></text>
+      <text x="532" y="175" opacity="0">70%<animate attributeName="opacity" values="0;0;1;0;0" dur="6.5s" repeatCount="indefinite" begin="3.2s"/></text>
+      <text x="532" y="175" opacity="0">100%<animate attributeName="opacity" values="0;0;0;1;0" dur="6.5s" repeatCount="indefinite" begin="5.1s"/></text>
+    </g>
+  </g>
+
+  <!-- ===== ABOUT ===== -->
+  <text x="64" y="192" class="px sub" style="fill:var(--primary)">About Me</text>
+  <text x="64" y="212" class="px sub" style="font-size:11px">
+    I love design and building creative digital experiences that blend tech & art.
+    <tspan x="64" dy="15">Currently in 3rd year of Systems Engineering at UPB.</tspan>
+  </text>
+
+  <!-- ===== INTERESTS (chips + scanner) ===== -->
+  <g style="animation:wobble 4s ease-in-out infinite">
+    <rect x="64" y="252" width="160" height="28" class="chip-fill"/>
+    <rect x="234" y="252" width="120" height="28" class="chip"/>
+    <rect x="364" y="252" width="200" height="28" class="chip-fill"/>
+    <text x="80" y="270" class="px sub" fill="var(--ink)" style="font-size:10px">WEB DESIGN</text>
+    <text x="250" y="270" class="px sub" fill="var(--ink)" style="font-size:10px">UX / UI</text>
+    <text x="380" y="270" class="px sub" fill="var(--ink)" style="font-size:10px">MARKETING</text>
+    <!-- scanner que recorre los chips -->
+    <rect x="64" y="280" width="160" height="2" fill="var(--accent)">
+      <animate attributeName="x" values="64;234;364;64" dur="5s" repeatCount="indefinite"/>
+      <animate attributeName="width" values="160;120;200;160" dur="5s" repeatCount="indefinite"/>
+    </rect>
+  </g>
+
+  <!-- ===== RIGHT: Beyond Code con órbitas ===== -->
+  <text x="720" y="192" class="px sub" style="fill:var(--primary)">Beyond Code</text>
+  <g>
+    <rect x="720" y="202" width="380" height="100" class="chip-fill"/>
+    <text x="740" y="222" class="px sub" style="font-size:11px">🎬 Watching Movies</text>
+    <text x="740" y="242" class="px sub" style="font-size:11px">🎨 Painting & Drawing</text>
+    <text x="740" y="262" class="px sub" style="font-size:11px">🎧 Listening to Music</text>
+    <text x="740" y="282" class="px sub" style="font-size:11px">🌿 Exploring Nature</text>
+
+    <!-- órbitas decorativas -->
+    <g transform="translate(1080,252)">
+      <circle r="22" fill="var(--light)" stroke="var(--hint)"/>
+      <circle r="6"  fill="var(--primary)">
+        <animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="7s" repeatCount="indefinite"/>
+      </circle>
+      <g fill="none" stroke="var(--accent)" stroke-width="2" opacity=".8">
+        <ellipse rx="40" ry="18"/>
+        <ellipse rx="56" ry="24" transform="rotate(25)"/>
+        <ellipse rx="56" ry="24" transform="rotate(-25)"/>
+      </g>
+    </g>
+  </g>
+</svg>
